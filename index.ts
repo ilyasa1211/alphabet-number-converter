@@ -47,21 +47,21 @@ class AlphabetNumberConverter {
   }
 
   public static toAlphabet(numbers: number): string {
-    const rawResult: number[] = [];
+    const alphabetIndexes: number[] = [];
 
     while (numbers > this.alphabets.length) {
       const result: number = numbers % this.alphabets.length;
       numbers = Math.floor(numbers / this.alphabets.length);
-      rawResult.unshift(result);
+      alphabetIndexes.unshift(result);
     }
-    rawResult.unshift(numbers % this.alphabets.length);
+    alphabetIndexes.unshift(numbers);
 
-    const result: TAlphabet[] = rawResult.map((alphabetIndex: number) => {
+    const alphabets: TAlphabet[] = alphabetIndexes.map((alphabetIndex: number) => {
       return this.alphabets[
         alphabetIndex - this.alphabetIndexOffset
       ] as TAlphabet;
     });
 
-    return result.join("");
+    return alphabets.join("");
   }
 }
